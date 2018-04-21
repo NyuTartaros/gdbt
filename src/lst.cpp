@@ -46,7 +46,7 @@ void LSTNode::setRightChild(int j, double s){
 	rightchild = new LSTNode(j, s);
 }
 
-//TODO
+//TODO Recursive delete
 void LSTNode::deleteNode(){
 
 }
