@@ -90,7 +90,6 @@ double LSTNode::getS(){
 }
 
 
-
 /*
  * LST Implementation
  */
