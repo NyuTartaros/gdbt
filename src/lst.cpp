@@ -145,7 +145,7 @@ void LST::fit(double** x, double* y){
 /**
  * 预测函数
  */
-void LST::predict(double** x, double* y){
+void LST::predict(double* x, double y){
 
 }
 

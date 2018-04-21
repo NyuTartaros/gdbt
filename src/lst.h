@@ -67,7 +67,7 @@ public:
 	/**
 	 * 预测函数
 	 */
-	void predict(double** x, double* y);
+	void predict(double* x, double y);
 };
 
 
