@@ -8,6 +8,27 @@
 #ifndef LST_H_
 #define LST_H_
 
+#include <vector>
+
+using namespace std;
+
+/**
+ * 样本集类
+ */
+class SampleSet{
+private:
+	vector<vector<double>> x;
+	vector<double> y;
+public:
+	SampleSet();
+	SampleSet(vector<vector<double>> x, vector<double> y);
+	~SampleSet();
+	vector<vector<double>> getX();
+	void setX(vector<vector<double>> x);
+	vector<double> getY();
+	void setY(vector<double> y);
+};
+
 /**
  * 最小二乘回归树，结点类
  */
@@ -19,17 +40,21 @@ private:
 	// 最优变量
 	double s;
 	// 最优分割点
+	double cLeft;
+	double cRight;
 public:
 	LSTNode();
-	LSTNode(int j, double s);
+	LSTNode(int j, double s, double cLeft, double cRight);
 	~LSTNode();
 	LSTNode getLeftChild();
 	LSTNode getRightChild();
-	void setLeftChild(int j, double s);
-	void setRightChild(int j, double s);
+	void setLeftChild(int j, double s, double cLeft, double cRight);
+	void setRightChild(int j, double s, double cLeft, double cRight);
 	void deleteNode();
 	int getJ();
 	double getS();
+	double getCLeft();
+	double getCRight();
 };
 
 /**
@@ -37,26 +62,24 @@ public:
  */
 class LST{
 private:
-
 	LSTNode* head;
 	// 头结点的指针
 	/**
 	 * 获得左子集的输出
 	 */
-	double getLeftOutput(int j, double s, double** x, double*y);
+	double getLeftOutput(int j, double s, vector<vector<double>> x, vector<double> y);
 	/**
 	 * 获得右子集的输出
 	 */
-	double getRightOutput(int j, double s, double** x, double*y);
+	double getRightOutput(int j, double s, vector<vector<double>> x, vector<double> y);
 	/**
 	 * 获得左子集的样本
 	 */
-	void getLeftSet(int j, double s, double** x, double* y);
+	SampleSet getLeftSet(int j, double s, vector<vector<double>> x, vector<double> y);
 	/**
 	 * 获得右子集的样本
 	 */
-	void getRightSet(int j, double s, double** x, double* y);
-
+	SampleSet getRightSet(int j, double s, vector<vector<double>> x, vector<double> y);
 public:
 	LST();
 	~LST();
@@ -67,7 +90,7 @@ public:
 	/**
 	 * 预测函数
 	 */
-	void predict(double* x, double y);
+	double predict(double* x, double y);
 };
 
 
