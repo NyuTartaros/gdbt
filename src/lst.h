@@ -63,6 +63,7 @@ public:
 class LST{
 private:
 	LSTNode* head;
+	double eps = 1e-3;
 	// 头结点的指针
 	/**
 	 * 获得左子集的输出
@@ -80,6 +81,14 @@ private:
 	 * 获得右子集的样本
 	 */
 	SampleSet getRightSet(int j, double s, vector<vector<double>> x, vector<double> y);
+	/**
+	 * 均值
+	 */
+	double mean(vector<double> x);
+	/**
+	 * 方差
+	 */
+	double variance(vector<double> x);
 public:
 	LST();
 	~LST();

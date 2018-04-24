@@ -84,8 +84,14 @@ LSTNode::LSTNode(int j, double s, double cLeft, double cRight){
  * Destructor
  */
 LSTNode::~LSTNode(){
-	getLeftChild().deleteNode();
-	getRightChild().deleteNode();
+	if(leftchild != NULL){
+
+	}
+	if(rightchild != NULL){
+
+	}
+	delete leftchild;
+	delete rightchild;
 }
 
 /**
@@ -121,7 +127,6 @@ void LSTNode::setRightChild(int j, double s, double cLeft, double cRight){
  * 删除以当前结点为根的子树
  */
 void LSTNode::deleteNode(){
-
 }
 
 /**
@@ -167,7 +172,7 @@ LST::LST(){
  * Destructor
  */
 LST::~LST(){
-	head->deleteNode();
+	~(&head);
 }
 
 /**
@@ -228,6 +233,31 @@ SampleSet LST::getRightSet(int j, double s, vector<vector<double>> x, vector<dou
 		}
 	}
 	return SampleSet(xOut, yOut);
+}
+
+/**
+ * 均值
+ */
+double mean(vector<double> x){
+	int num  = x.size();
+	double mean = 0;
+	for(int i=0; i<num; i++){
+		mean += x[i];
+	}
+	return mean/(double)num;
+}
+
+/**
+ * 方差
+ */
+double variance(vector<double> x){
+	int num = x.size();
+	double mean = mean(x);
+	double var = 0;
+	for(int i=0; i<num; i++){
+		var += (x[i]-mean)*(x[i]-mean);
+	}
+	return var/(double)(num-1);
 }
 
 /**
