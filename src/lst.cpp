@@ -85,10 +85,10 @@ LSTNode::LSTNode(int j, double s, double cLeft, double cRight){
  */
 LSTNode::~LSTNode(){
 	if(leftchild != NULL){
-
+		~(*leftchild);
 	}
 	if(rightchild != NULL){
-
+		~(*rightchild);
 	}
 	delete leftchild;
 	delete rightchild;
@@ -98,14 +98,14 @@ LSTNode::~LSTNode(){
  * 获得左子树
  */
 LSTNode LSTNode::getLeftChild(){
-	return &leftchild;
+	return *leftchild;
 }
 
 /**
  * 获得右子树
  */
 LSTNode LSTNode::getRightChild(){
-	return &rightchild;
+	return *rightchild;
 }
 
 /**
@@ -172,7 +172,7 @@ LST::LST(){
  * Destructor
  */
 LST::~LST(){
-	~(&head);
+	~(*head);
 }
 
 /**
